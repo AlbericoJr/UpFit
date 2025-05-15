@@ -40,8 +40,8 @@ export function AppRoutes() {
           backgroundColor: tokens.colors.gray600,
           borderTopWidth: 0,
           height: Platform.OS === "android" ? "auto" : 96,
-          paddingBottom: tokens.space["10"],
-          paddingTop: tokens.space["6"],
+          paddingBottom: tokens.space["14"],
+          paddingTop: tokens.space["2"],
         },
       }}
     >
@@ -80,6 +80,9 @@ export function AppRoutes() {
         component={Exercise}
         options={{
           tabBarButton: () => null,
+          tabBarItemStyle: {
+            display: 'none'
+          }
         }}
       />
     </Navigator>
