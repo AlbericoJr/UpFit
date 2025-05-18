@@ -8,7 +8,15 @@ import { yupResolver } from "@hookform/resolvers/yup"
 
 import { Controller, useForm } from "react-hook-form"
 
-import { Center, Heading, Text, Toast, ToastTitle, VStack, useToast } from "@gluestack-ui/themed"
+import {
+  Center,
+  Heading,
+  Text,
+  Toast,
+  ToastTitle,
+  VStack,
+  useToast,
+} from "@gluestack-ui/themed"
 import { UserPhoto } from "@components/UserPhoto"
 import { Input } from "@components/Input"
 import { Button } from "@components/Button"
@@ -20,9 +28,9 @@ import { AppError } from "@utils/AppError"
 type FormDataProps = {
   name: string
   email: string
-  password: string
-  old_password: string
-  confirm_password: string
+  password: string | null
+  old_password: string | null
+  confirm_password: string | null
 }
 
 const profileSchema = yup.object({
@@ -39,8 +47,11 @@ const profileSchema = yup.object({
     .oneOf([yup.ref("password"), null], "A confirmação de senha não confere.")
     .when("password", {
       is: (Field: any) => Field,
-      then: (schema) => schema.nullable().required("Informe a confirmação da senha.")
-      .transform((value) => (!!value ? value : null)),
+      then: (schema) =>
+        schema
+          .nullable()
+          .required("Informe a confirmação da senha.")
+          .transform((value) => (!!value ? value : null)),
     }),
 })
 
@@ -115,7 +126,7 @@ export function Profile() {
       const userUpdated = user
       userUpdated.name = data.name
 
-      await api.put("/users", data);
+      await api.put("/users", data)
 
       await updateUserProfile(userUpdated)
 
@@ -123,14 +134,17 @@ export function Profile() {
         placement: "top",
         render: () => (
           <Toast backgroundColor="$warning500" variant="outline">
-            <ToastTitle color="$white">Perfil atualizado com sucesso!</ToastTitle>
+            <ToastTitle color="$white">
+              Perfil atualizado com sucesso!
+            </ToastTitle>
           </Toast>
         ),
       })
-
     } catch (error) {
       const isAppError = error instanceof AppError
-      const title = isAppError ? error.message : "Não foi possível atualizar os dados. Tente novamente mais tarde."
+      const title = isAppError
+        ? error.message
+        : "Não foi possível atualizar os dados. Tente novamente mais tarde."
 
       toast.show({
         placement: "top",
