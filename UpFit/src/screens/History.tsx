@@ -1,22 +1,52 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
+import { useFocusEffect } from "@react-navigation/native"
 import { SectionList } from "react-native"
-import { Heading, Text, VStack} from "@gluestack-ui/themed"
+import { Heading, Text, Toast, ToastTitle, useToast, VStack} from "@gluestack-ui/themed"
 
 import { ScreenHeader } from "@components/ScreenHeader"
 import { HistoryCard } from "@components/HistoryCard"
+import { AppError } from "@utils/AppError"
+import { api } from "@services/api"
+
+import { HistoryByDayDTO } from "@dtos/HistoryByDayDTO"
 
 export function History(){
 
-  const [exercises, setExercises] = useState([
-    {
-      title: "13.05.25",
-      data: ["Puxada Frontal", "Remada unilateral"]
-    },
-    {
-      title: "14.05.25",
-      data: ["Puxada Frontal"]
-    },
-  ])
+  const [isLoading, setIsLoading] = useState(true)
+
+  const [exercises, setExercises] = useState<HistoryByDayDTO[]>([])
+
+  const toast = useToast()
+
+
+  async function fetchHistory() {
+    try {
+      setIsLoading(true)
+      const response = await api.get("/history")
+      setExercises(response.data)
+
+    } catch (error) {
+      const isAppError = error instanceof AppError
+      const title = isAppError
+        ? error.message
+        : "Não foi possível carregar o histórico."
+
+      toast.show({
+        placement: "top",
+        render: () => (
+          <Toast backgroundColor="$red500" action="error" variant="outline">
+            <ToastTitle color="$white">{title}</ToastTitle>
+          </Toast>
+        ),
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useFocusEffect(useCallback(() => {
+    fetchHistory()
+  }, []))
 
   return(
     <VStack flex={1} bg="$gray700">
@@ -24,9 +54,9 @@ export function History(){
       
       <SectionList
         sections={exercises}
-        keyExtractor={item => item}
-        renderItem={({}) => (
-          <HistoryCard/>
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <HistoryCard data={item}/>
         )}
         renderSectionHeader={({section}) => (
           <Heading
