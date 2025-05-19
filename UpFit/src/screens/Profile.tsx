@@ -25,6 +25,8 @@ import { useAuth } from "@hooks/useAuth"
 import { api } from "@services/api"
 import { AppError } from "@utils/AppError"
 
+import defaultUserPhotoImg from "@assets/userPhotoDefault.png"
+
 type FormDataProps = {
   name: string
   email: string
@@ -57,10 +59,6 @@ const profileSchema = yup.object({
 
 export function Profile() {
   const [isUpdating, setIsUpdating] = useState(false)
-
-  const [userPhoto, setUserPhoto] = useState(
-    "https://github.com/AlbericoJr.png"
-  )
 
   const { user, updateUserProfile } = useAuth()
   const toast = useToast()
@@ -112,10 +110,76 @@ export function Profile() {
           })
         }
 
-        setUserPhoto(photoURI)
+        const fileExtension = photoURI.split(".").pop()
+
+        const photoFile = {
+          name: `${user.name}.${fileExtension}`.toLowerCase(),
+          uri: photoURI,
+          type: `${photoSelected.assets[0].type}/${fileExtension}`,
+        }as any;
+
+        const userPhotoUploadForm = new FormData()
+        userPhotoUploadForm.append("avatar", photoFile)
+
+        try {
+          // console.log("Tentando fazer upload para:", `${api.defaults.baseURL}/users/avatar`)
+          const avatarUpdatedResponse = await api.patch("/users/avatar", userPhotoUploadForm, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            }
+          })
+
+          const userUpdated = {
+            ...user,
+            avatar: avatarUpdatedResponse.data.avatar
+          }
+          
+          updateUserProfile(userUpdated)
+
+          toast.show({
+            placement: "top",
+            render: () => (
+              <Toast backgroundColor="$warning500" variant="outline">
+                <ToastTitle color="$white">
+                  Foto atualizada!
+                </ToastTitle>
+              </Toast>
+            ),
+          })
+        } catch (error: any) {
+          console.error("Erro detalhado:", {
+            message: error.message,
+            response: error.response?.data,
+            status: error.response?.status,
+            baseURL: api.defaults.baseURL
+          })
+          
+          toast.show({
+            placement: "top",
+            render: ({ id }) => (
+              <ToastMessage
+                id={id}
+                action="error"
+                title={`Erro ao fazer upload: ${error.message}`}
+                onClose={() => toast.close(id)}
+              />
+            ),
+          })
+        }
       }
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      // console.error("Erro ao selecionar a foto:", error.message)
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="error"
+            title={`Erro ao selecionar foto: ${error.message}`}
+            onClose={() => toast.close(id)}
+          />
+        ),
+      })
     }
   }
 
@@ -166,7 +230,7 @@ export function Profile() {
       <ScrollView contentContainerStyle={{ paddingBottom: 36 }}>
         <Center mt="$6" px="$10">
           <UserPhoto
-            source={{ uri: userPhoto }}
+            source={user.avatar ? { uri: `${api.defaults.baseURL}/avatar/${user.avatar}` } : defaultUserPhotoImg}
             alt="Foto do usuário"
             size="xl"
           />
