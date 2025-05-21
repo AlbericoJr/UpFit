@@ -162,7 +162,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 Seu Nome - [@Linkedin](https://www.linkedin.com/in/alberico-junior/) - alberico14@live.com
 
-Link do Projeto: [https://github.com/seu-usuario/UpFit](https://github.com/seu-usuario/UpFit)
+Link do Projeto: [https://github.com/AlbericoJr/UpFit?tab=readme-ov-file](https://github.com/AlbericoJr/UpFit?tab=readme-ov-file)
 
 ## 🙏 Agradecimentos
 
