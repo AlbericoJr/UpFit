@@ -1,4 +1,4 @@
-# UpFit - Seu Aplicativo de Fitness
+# UpFit - Seu Aplicativo Fitness
 
 ![UpFit Logo](./mobile/assets/icon.png)
 
@@ -79,9 +79,6 @@ Para executar em um dispositivo específico:
 - [ ] Perfil personalizado
 - [ ] Criação e gerenciamento de treinos
 - [ ] Acompanhamento de progresso
-- [ ] Estatísticas e métricas
-- [ ] Compartilhamento de treinos
-- [ ] Notificações e lembretes
 
 ## 🎨 Interface do Usuário
 
@@ -103,36 +100,37 @@ O aplicativo utiliza um tema escuro moderno com as seguintes cores principais:
 
 ### Tela Inicial
 
-![Tela Inicial](./docs/screenshots/home.png)
+![Tela Inicial](https://i.postimg.cc/63x8fjkG/Tela-inicial.png)
 _Tela inicial do aplicativo mostrando o dashboard principal_
 
-### Perfil do Usuário
+### Tela de Login
 
-![Perfil](https://i.postimg.cc/t4bSJRZP/Hand-and-i-Phone-16-Pro.png)
-_Tela de perfil do usuário com estatísticas e configurações_
+![Tela de Login](https://i.postimg.cc/t4bSJRZP/Hand-and-i-Phone-16-Pro.png)
+_Tela de login_
 
-### Criação de Treino
+### Tela de cadastro
 
-![Criação de Treino](./docs/screenshots/create-workout.png)
-_Interface para criação e personalização de treinos_
+![Tela de cadastro](https://i.postimg.cc/HnpnMGb6/Tela-de-cadastro.png)
+_Interface para criação de cadastro_
 
-### Acompanhamento de Progresso
+### Tela inicial
 
-![Progresso](./docs/screenshots/progress.png)
-_Gráficos e métricas de acompanhamento de progresso_
+![Tela inicial](https://i.postimg.cc/bvzB430K/Tela-inicial.png)
+_Tela de inicio_
 
-### Demonstração em Vídeo
+### Tela de Exercícios
 
-[![Demo Video](https://img.youtube.com/vi/SEU_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=SEU_VIDEO_ID)
-_Clique na imagem para ver a demonstração em vídeo do aplicativo_
+![Tela de Exercícios](https://i.postimg.cc/nLhCMfYT/Tela-de-Exerc-cios.png)
+_Tela de inicio_
 
-### Gifs de Funcionalidades
+### Tela de Histórico de Exercícios
 
-![Login Flow](./docs/gifs/login-flow.gif)
-_Fluxo de login e autenticação_
+![Tela de Histórico de Exercícios](https://i.postimg.cc/8cd7jRsg/Tela-de-Hist-rico-de-Exerc-cios.png)
+_Tela de Histórico de Exercícios feitos durante o dia_
 
-![Workout Creation](./docs/gifs/workout-creation.gif)
-_Processo de criação de treino_
+![Tela de configuração do usuário](https://i.postimg.cc/3rCKPJv6/Tela-de-configura-o-do-usu-rio.png)
+_Tela de configuração do usuário_
+
 
 ## 📦 Estrutura do Projeto
 
@@ -162,7 +160,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 📧 Contato
 
-Seu Nome - [@seu_twitter](https://twitter.com/seu_twitter) - email@exemplo.com
+Seu Nome - [@Linkedin](https://www.linkedin.com/in/alberico-junior/) - alberico14@live.com
 
 Link do Projeto: [https://github.com/seu-usuario/UpFit](https://github.com/seu-usuario/UpFit)
 
