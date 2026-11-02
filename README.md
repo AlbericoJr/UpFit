@@ -2,7 +2,7 @@
 
 ![UpFit Logo](./mobile/assets/icon.png)
 
-## 📱 Sobre o Projeto
+[Código-fonte](https://github.com/AlbericoJr/UpFit) · [Portfólio](https://albericojr-portfolio-xi.vercel.app/)\n\n## 📱 Sobre o Projeto
 
 UpFit é um aplicativo móvel desenvolvido para ajudar usuários a alcançarem seus objetivos fitness de forma mais eficiente e organizada. O aplicativo oferece uma interface moderna e intuitiva, permitindo que os usuários gerenciem seus treinos, acompanhem seu progresso e mantenham-se motivados em sua jornada fitness.
 
@@ -29,7 +29,7 @@ UpFit é um aplicativo móvel desenvolvido para ajudar usuários a alcançarem s
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/UpFit.git
+git clone https://github.com/AlbericoJr/UpFit.git
 cd UpFit
 ```
 
@@ -170,3 +170,10 @@ Link do Projeto: [https://github.com/AlbericoJr/UpFit?tab=readme-ov-file](https:
 - [React Native](https://reactnative.dev/)
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/)
+
+
+## 🔐 Segurança e privacidade
+
+Não inclua chaves de API, senhas, strings de conexão com credenciais ou dados pessoais em commits. Use arquivos `.env` locais, mantenha-os fora do Git e documente apenas exemplos com valores fictícios. Consulte os arquivos de configuração de cada subprojeto antes de executar.
+
+> Projeto de portfólio/estudo: as funções descritas devem ser validadas em execução antes de utilização com dados reais.
